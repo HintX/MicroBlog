@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="microBlog.mapper.AdminsMapper">
+	 <resultMap id="resultAdmins" type="Admins" >  
+       <result column="admins_id" property="id"></result>  
+       <result column="admins_name" property="name"></result>  
+       <result column="admins_userName" property="userName"></result> 
+       <result column="user_passWord" property="passWord"></result>
+       <result column="user_state" property="state"></result>
+    </resultMap> 
+    <select id="checkLogin" resultMap="resultAdmins">
+    	select * from Admins where userName = #{userName} and passWord = #{passWord} and state !=1
+    </select>
+    <select id="fetchById" resultMap="resultAdmins">
+    	select * from Admins where id = #{id}
+    </select>
+    <select id="fetchByUserName" resultMap="resultAdmins">
+    	select * from Admins where userName = #{userName}
+    </select>
+    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Admins(name,userName,passWord,state) VALUES(#{name}, #{userName}, #{passWord},#{state})
+	</insert>
+	<update id="update">
+		UPDATE Admins
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="userName != null">userName = #{userName},</if>
+			<if test="passWord != null">passWord = #{passWord},</if>
+			<if test="state != null">state = #{state},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<update id="updateState">
+		UPDATE Admins
+		<set>
+			<if test="state != null">state = #{state},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+</mapper>
+  	

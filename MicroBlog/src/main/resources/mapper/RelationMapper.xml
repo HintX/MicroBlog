@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="microBlog.mapper.RelationMapper">
+	<resultMap id="resultRelation" type="Relation" >  
+       <result column="relation_id" property="id"></result> 
+       <result column="relation_time" property="time"></result> 
+       <association property="user" javaType="microBlog.entity.User" >  
+            <id column="user_id" property="userId"/>  
+            <result column="user_email" property="email"/>    
+            <result column="user_passWord" property="passWord"/>    
+            <result column="user_nickName" property="nickName"/>    
+       		<result column="user_time" property="time"/>    
+       		<result column="user_status" property="status"/>    
+       </association> 
+       <association property="byUser" javaType="microBlog.entity.User" >  
+            <id column="user_id" property="userId"/>  
+            <result column="user_email" property="email"/>    
+            <result column="user_passWord" property="passWord"/>    
+            <result column="user_nickName" property="nickName"/>    
+       		<result column="user_time" property="time"/>    
+       		<result column="user_status" property="status"/>    
+       </association> 
+    </resultMap>
+</mapper>
+  	
