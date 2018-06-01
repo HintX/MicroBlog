@@ -11,7 +11,7 @@
        <result column="user_time" property="time"></result>
        <result column="user_status" property="status"></result> 
     </resultMap>
-    <select id="checkLogin" resultMap="resultUser">
+    <select id="checkLogin">
     	select * from User where email = #{email} and passWord = #{passWord} and status !=1
     </select>
     <update id="updateStatus">

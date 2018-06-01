@@ -3,6 +3,33 @@
  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="microBlog.mapper.MessagesMapper">
-
+	<resultMap id="resultMessages" type="Messages" >  
+       <result column="messages_id" property="id"></result> 
+       <result column="messages_info" property="info"></result> 
+       <result column="messages_time" property="time"></result>
+       <result column="messages_collectnum" property="collectnum"></result>
+       <result column="messages_commentnum" property="commentnum"></result> 
+       <result column="messages_agreenum" property="agreenum"></result> 
+       <result column="messages_state" property="status"></result> 
+       <association property="user" javaType="microBlog.entity.User" >  
+            <id column="user_id" property="userId"/>  
+            <result column="user_email" property="email"/>    
+            <result column="user_passWord" property="passWord"/>    
+            <result column="user_nickName" property="nickName"/>    
+       		<result column="user_time" property="time"/>    
+       		<result column="user_status" property="status"/>    
+       </association> 
+       <association property="pictures" javaType="microBlog.entity.Pictures" >  
+       		<id column="pictures_id" property="id"/>  
+       		<result column="pictures_url" property="url"></result> 
+       		<result column="pictures_type" property="type"></result>
+       </association>
+        <association property="topic" javaType="microBlog.entity.Topic" >  
+       		<id column="topic_id" property="id"/>  
+       		 <result column="topic_name" property="name"></result> 
+		 	 <result column="topic_time" property="time"></result> 
+		 	 <result column="topic_state" property="state"></result> 
+       </association>
+    </resultMap>
 </mapper>
   	

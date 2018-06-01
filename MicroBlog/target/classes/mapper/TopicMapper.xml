@@ -16,6 +16,28 @@
 	       		<result column="user_time" property="time"/>    
 	       		<result column="user_status" property="status"/>    
 	       </association> 
-     </resultMap>  
+     </resultMap>
+      <select id="fetchById">
+    	select * from Topic where id = #{id} ane state != 0
+    </select>  
+    <update id="update">
+		UPDATE Admins
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="state != null">state = #{state},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<update id="updateState">
+		UPDATE Topic
+		<set>
+			<if test="state != null">state = #{state},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
 </mapper>
   	
