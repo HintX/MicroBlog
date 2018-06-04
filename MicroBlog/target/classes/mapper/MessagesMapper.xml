@@ -19,11 +19,6 @@
        		<result column="user_time" property="time"/>    
        		<result column="user_status" property="status"/>    
        </association> 
-       <association property="pictures" javaType="microBlog.entity.Pictures" >  
-       		<id column="pictures_id" property="id"/>  
-       		<result column="pictures_url" property="url"></result> 
-       		<result column="pictures_type" property="type"></result>
-       </association>
         <association property="topic" javaType="microBlog.entity.Topic" >  
        		<id column="topic_id" property="id"/>  
        		 <result column="topic_name" property="name"></result> 

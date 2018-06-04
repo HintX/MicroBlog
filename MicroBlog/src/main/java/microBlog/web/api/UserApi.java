@@ -36,5 +36,20 @@ public class UserApi {
 	public boolean loginOut(HttpSession session) {
 		session.setAttribute("user", null);
 		return true;
+	}	
+	
+	@RequestMapping("register")
+	public boolean register(User user) {
+		boolean isTrue = false;
+		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+		String Md5Name = md5.encodePassword(user.getPassWord(),user.getEmail());
+		user.setPassWord(Md5Name);
+		userBizImpl.register(user);
+		if(user.getId()!=0) {
+			isTrue = true;
+		}else{
+			isTrue = false;
+		}
+		return isTrue;
 	}
 }

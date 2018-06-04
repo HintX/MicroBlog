@@ -18,26 +18,29 @@
 	       </association> 
      </resultMap>
       <select id="fetchById">
-    	select * from Topic where id = #{id} ane state != 0
+    	select * from Topic where Topic_id = #{id} ane Topic_state != 0
     </select>  
     <update id="update">
 		UPDATE Admins
 		<set>
-			<if test="name != null">name = #{name},</if>
-			<if test="state != null">state = #{state},</if>
+			<if test="name != null">Topic_name = #{name},</if>
+			<if test="state != null">Topic_state = #{state},</if>
 		</set>
 		<where>
-			id = #{id}
+			Topic_id = #{id}
 		</where>
 	</update>
 	<update id="updateState">
 		UPDATE Topic
 		<set>
-			<if test="state != null">state = #{state},</if>
+			<if test="state != null">Topic_state = #{state},</if>
 		</set>
 		<where>
-			id = #{id}
+			Topic_id = #{id}
 		</where>
 	</update>
+	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Topic(Topic_name,Topic_time,Topic_userId,Topic_state) VALUES(#{name},#{time},#{userId},0)
+	</insert>
 </mapper>
   	

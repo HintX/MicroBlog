@@ -7,6 +7,15 @@
        <result column="pictures_id" property="id"></result> 
        <result column="pictures_url" property="url"></result> 
        <result column="pictures_type" property="type"></result>
+       <association property="messages" javaType="microBlog.entity.Messages" >  
+            <id column="messages_id" property="id"/>  
+            <result column="messages_info" property="info"></result> 
+      	    <result column="messages_time" property="time"></result>
+		    <result column="messages_collectnum" property="collectnum"></result>
+		    <result column="messages_commentnum" property="commentnum"></result> 
+		    <result column="messages_agreenum" property="agreenum"></result> 
+		    <result column="messages_state" property="status"></result> 
+	  </association>
     </resultMap>
 </mapper>
   	

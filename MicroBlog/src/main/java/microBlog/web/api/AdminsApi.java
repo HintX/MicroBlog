@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import microBlog.biz.impl.AdminsBizImpl;
 import microBlog.entity.Admins;
+import microBlog.entity.User;
 
 @RestController
 @RequestMapping("/api/Admins")
@@ -36,5 +37,20 @@ public class AdminsApi {
 	public boolean loginOut(HttpSession session) {
 		session.setAttribute("admins", null);
 		return true;
+	}
+	
+	@RequestMapping("register")
+	public boolean register(Admins admins) {
+		boolean isTrue = false;
+		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+		String Md5Name = md5.encodePassword(admins.getPassWord(),admins.getUserName());
+		admins.setPassWord(Md5Name);
+		adminsBizImpl.register(admins);
+		if(admins.getId()!=0) {
+			isTrue = true;
+		}else{
+			isTrue = false;
+		}
+		return isTrue;
 	}
 }

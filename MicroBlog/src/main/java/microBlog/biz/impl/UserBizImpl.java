@@ -20,7 +20,7 @@ public class UserBizImpl implements UserBiz{
 
 	@Override
 	public void register(User user) {
-		usermapper.register(user);
+		 usermapper.register(user);
 	}
 
 	@Override

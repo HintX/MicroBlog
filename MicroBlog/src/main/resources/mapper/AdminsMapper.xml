@@ -11,36 +11,36 @@
        <result column="user_state" property="state"></result>
     </resultMap> 
     <select id="checkLogin">
-    	select * from Admins where userName = #{userName} and passWord = #{passWord} and state !=1
+    	select * from Admins where admins_userName = #{userName} and admins_passWord = #{passWord} and admins_state !=1
     </select>
     <select id="fetchById" >
-    	select * from Admins where id = #{id}
+    	select * from Admins where admins_id = #{id}
     </select>
     <select id="fetchByUserName">
-    	select * from Admins where userName = #{userName}
+    	select * from Admins where admins_userName = #{userName}
     </select>
     <insert id="register" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO Admins(name,userName,passWord,state) VALUES(#{name}, #{userName}, #{passWord},#{state})
+		INSERT INTO Admins(admins_name,admins_userName,admins_passWord,admins_state) VALUES(#{name}, #{userName}, #{passWord},0)
 	</insert>
 	<update id="update">
 		UPDATE Admins
 		<set>
-			<if test="name != null">name = #{name},</if>
-			<if test="userName != null">userName = #{userName},</if>
-			<if test="passWord != null">passWord = #{passWord},</if>
-			<if test="state != null">state = #{state},</if>
+			<if test="name != null">admins_name = #{name},</if>
+			<if test="userName != null">admins_userName = #{userName},</if>
+			<if test="passWord != null">admins_passWord = #{passWord},</if>
+			<if test="state != null">admins_state = #{state},</if>
 		</set>
 		<where>
-			id = #{id}
+			admins_id = #{id}
 		</where>
 	</update>
 	<update id="updateState">
 		UPDATE Admins
 		<set>
-			<if test="state != null">state = #{state},</if>
+			<if test="state != null">admins_state = #{state},</if>
 		</set>
 		<where>
-			id = #{id}
+			admins_id = #{id}
 		</where>
 	</update>
 </mapper>

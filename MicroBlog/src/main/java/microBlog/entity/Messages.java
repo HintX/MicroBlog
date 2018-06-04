@@ -11,7 +11,6 @@ public class Messages {
 		this.id = id;
 	}
 	private int id;
-	private Pictures pictures;
 	private User user;
 	private String info;
 	private Date time;
@@ -31,12 +30,6 @@ public class Messages {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public Pictures getPictures() {
-		return pictures;
-	}
-	public void setPictures(Pictures pictures) {
-		this.pictures = pictures;
 	}
 	public User getUser() {
 		return user;

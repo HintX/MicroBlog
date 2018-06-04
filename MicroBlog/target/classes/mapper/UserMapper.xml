@@ -12,15 +12,34 @@
        <result column="user_status" property="status"></result> 
     </resultMap>
     <select id="checkLogin">
-    	select * from User where email = #{email} and passWord = #{passWord} and status !=1
+    	select * from User where user_email = #{email} and user_passWord = #{passWord} and user_status !=1
     </select>
     <update id="updateStatus">
 		UPDATE User
 		<set>
-			<if test="status != null">status = #{status},</if>
+			<if test="status != null">user_status = #{status},</if>
 		</set>
 		<where>
-			id = #{id}
+			user_id = #{id}
 		</where>
 	</update>
+	<select id="fetchById">
+		select * from User where user_id = #{id}
+	</select>
+	<update id="update">
+		UPDATE User
+		<set>
+			<if test="passWord != null">user_passWord = #{passWord},</if>
+			<if test="nickName != null">user_nickName = #{nickName},</if>
+		</set>
+		<where>
+			user_id = #{id}
+		</where>
+	</update>
+	<select id="fetchUserByEmail">
+		select * from User where user_email = #{email}
+	</select>
+	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO user(user_email,user_passWord,user_nickName,user_time,user_status) VALUES(#{email}#{passWord}#{nickName}#{time},0)
+	</insert>
 </mapper>

@@ -11,5 +11,6 @@ public interface UserMapper {
 	User fetchUserByEmail(String email);
 	void updateStatus(@Param("id")int id,@Param("status")int status);
 	User fetchById(int id);
+	//只可以改昵称密码
 	void update(User user);
 }

@@ -9,8 +9,15 @@ public class Pictures {
 		this.id = id;
 	}
 	private int id;
+	private Messages messages;
 	private String url;
 	private String type;
+	public Messages getMessages() {
+		return messages;
+	}
+	public void setMessages(Messages messages) {
+		this.messages = messages;
+	}
 	public int getId() {
 		return id;
 	}
