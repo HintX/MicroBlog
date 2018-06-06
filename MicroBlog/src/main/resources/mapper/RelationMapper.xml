@@ -7,21 +7,30 @@
        <result column="relation_id" property="id"></result> 
        <result column="relation_time" property="time"></result> 
        <association property="user" javaType="microBlog.entity.User" >  
-            <id column="user_id" property="userId"/>  
+            <id column="user_id" property="id"/>  
             <result column="user_email" property="email"/>    
-            <result column="user_passWord" property="passWord"/>    
             <result column="user_nickName" property="nickName"/>    
        		<result column="user_time" property="time"/>    
        		<result column="user_status" property="status"/>    
        </association> 
        <association property="byUser" javaType="microBlog.entity.User" >  
-            <id column="user_id" property="userId"/>  
+            <id column="user_id" property="id"/>  
             <result column="user_email" property="email"/>    
-            <result column="user_passWord" property="passWord"/>    
             <result column="user_nickName" property="nickName"/>    
        		<result column="user_time" property="time"/>    
        		<result column="user_status" property="status"/>    
        </association> 
     </resultMap>
+    <sql id="sql">
+    	SELECT r.*,
+		u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,u.user_time AS user_time,u.user_status AS user_status,
+		b.user_id AS user_id,b.user_email AS user_email,b.user_nickName AS user_nickName,b.user_time AS user_time,b.user_status AS user_status
+		FROM Relation r 
+		LEFT JOIN `user` u ON(r.user_id = u.user_id)
+		LEFT JOIN `user` b ON(r.user_id = u.user_id)
+    </sql>
+    <select id="UpdateFans" resultMap="resultRelation">
+    	<include refid="sql" /> where u.user_id = #{userId} and b.user_byId = #{byId}
+    </select>
 </mapper>
   	

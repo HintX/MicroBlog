@@ -9,16 +9,20 @@
 		 <result column="topic_time" property="time"></result> 
 		 <result column="topic_state" property="state"></result> 
 		<association property="user" javaType="microBlog.entity.User" >  
-	            <id column="user_id" property="userId"/>  
+	            <id column="user_id" property="id"/>  
 	            <result column="user_email" property="email"/>    
-	            <result column="user_passWord" property="passWord"/>    
 	            <result column="user_nickName" property="nickName"/>    
 	       		<result column="user_time" property="time"/>    
 	       		<result column="user_status" property="status"/>    
 	       </association> 
      </resultMap>
-      <select id="fetchById">
-    	select * from Topic where Topic_id = #{id} ane Topic_state != 0
+     <sql id="sql">
+     	SELECT t.*,u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,
+		u.user_time AS user_time,u.user_status AS user_status
+		FROM topic t LEFT JOIN `user` u ON(t.user_id = u.user_id) 
+     </sql>
+      <select id="fetchById" resultMap="resultTopic">
+    	<include refid="sql" /> where t.Topic_id = #{id} ane t.Topic_state != 0
     </select>  
     <update id="update">
 		UPDATE Admins

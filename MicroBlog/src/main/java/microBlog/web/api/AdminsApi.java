@@ -4,26 +4,27 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import microBlog.biz.impl.AdminsBizImpl;
+import microBlog.biz.AdminsBiz;
 import microBlog.entity.Admins;
-import microBlog.entity.User;
 
-@RestController
+@Controller
 @RequestMapping("/api/Admins")
 public class AdminsApi {
 	
 	@Autowired
-	private AdminsBizImpl adminsBizImpl;
+	private AdminsBiz adminsBiz;
 	
+	@ResponseBody
 	@RequestMapping("checkLogin")
 	public boolean checkLogin(String userName,String passWord,HttpSession session) {
 		boolean isTrue = false;
 		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 		String Md5Name = md5.encodePassword(passWord,userName);
-		Admins admins = adminsBizImpl.checkLogin(userName, Md5Name);
+		Admins admins = adminsBiz.checkLogin(userName, Md5Name);
 		if(admins!=null) {
 			 session.setAttribute("admins", admins);
 			 isTrue = true;
@@ -33,19 +34,21 @@ public class AdminsApi {
 		return isTrue;
 	}
 	
+	@ResponseBody
 	@RequestMapping("logOut")
 	public boolean loginOut(HttpSession session) {
 		session.setAttribute("admins", null);
 		return true;
 	}
 	
+	@ResponseBody
 	@RequestMapping("register")
 	public boolean register(Admins admins) {
 		boolean isTrue = false;
 		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 		String Md5Name = md5.encodePassword(admins.getPassWord(),admins.getUserName());
 		admins.setPassWord(Md5Name);
-		adminsBizImpl.register(admins);
+		adminsBiz.register(admins);
 		if(admins.getId()!=0) {
 			isTrue = true;
 		}else{

@@ -42,5 +42,4 @@ public class UserBizImpl implements UserBiz{
 	public void updateStatus(int id, int status) {
 		usermapper.updateStatus(id, status);
 	}
-
 }

@@ -10,13 +10,13 @@
        <result column="user_passWord" property="passWord"></result>
        <result column="user_state" property="state"></result>
     </resultMap> 
-    <select id="checkLogin">
+    <select id="checkLogin" resultMap="resultAdmins">
     	select * from Admins where admins_userName = #{userName} and admins_passWord = #{passWord} and admins_state !=1
     </select>
-    <select id="fetchById" >
+    <select id="fetchById" resultMap="resultAdmins">
     	select * from Admins where admins_id = #{id}
     </select>
-    <select id="fetchByUserName">
+    <select id="fetchByUserName" resultMap="resultAdmins">
     	select * from Admins where admins_userName = #{userName}
     </select>
     <insert id="register" keyProperty="id" useGeneratedKeys="true">

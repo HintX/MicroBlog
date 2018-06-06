@@ -8,9 +8,8 @@
        <result column="collections_time" property="time"></result> 
        <result column="collections_state" property="state"></result>
        <association property="user" javaType="microBlog.entity.User" >  
-            <id column="user_id" property="userId"/>  
+            <id column="user_id" property="id"/>  
             <result column="user_email" property="email"/>    
-            <result column="user_passWord" property="passWord"/>    
             <result column="user_nickName" property="nickName"/>    
        		<result column="user_time" property="time"/>    
        		<result column="user_status" property="status"/>    

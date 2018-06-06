@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="microBlog.mapper.DatumMapper">
+	<resultMap id="resultDatum" type="Datum">
+		<result column="user_id" property="userId"></result>
+		<result column="nickName" property="nickName"></result>
+		<result column="messagesNum" property="messagesNum"></result>
+		<result column="attentionNum" property="attentionNum"></result>
+		<result column="fansNum" property="fansNum"></result>
+		<association property="userInfo" javaType="microBlog.entity.UserInfo">
+			<id column="userInfo_id" property="id" />
+			<result column="userinfo_trueName" property="trueName"></result>
+			<result column="userinfo_address" property="address"></result>
+			<result column="userinfo_sex" property="sex"></result>
+			<result column="userinfo_icon" property="icon"></result>
+			<result column="userinfo_birthday" property="birthday"></result>
+			<result column="userinfo_intro" property="intro"></result>
+			<result column="userinfo_email" property="email"></result>
+		</association>
+	</resultMap>
+	<select id="gerenziliao" resultMap="resultDatum">
+		SELECT ui.*,u.user_nickName
+		AS nickName,(SELECT COUNT(messages_id) FROM messages WHERE
+		user_id=#{userId} AND messages_state=0) AS messagesNum,
+		(SELECT COUNT(`relation_id`) FROM relation WHERE `user_id`=#{userId}) AS
+		attentionNum,
+		(SELECT COUNT(`relation_id`) FROM relation WHERE user_byId=#{userId}) AS
+		fansNum
+		FROM userinfo ui
+		LEFT JOIN `user` u ON (u.`user_id`=ui.`user_id`)
+		WHERE ui.user_id=#{userId}
+	</select>
+</mapper>

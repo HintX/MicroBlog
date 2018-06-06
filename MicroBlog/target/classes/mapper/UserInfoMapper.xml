@@ -5,18 +5,41 @@
 <mapper namespace="microBlog.mapper.UserInfoMapper">
 	 <resultMap id="resultUserInfo" type="UserInfo" >  
        <result column="userinfo_id" property="id"></result> 
-       <result column="user_passWord" property="passWord"></result> 
-       <result column="user_nickName" property="nickName"></result>
-       <result column="user_time" property="time"></result>
-       <result column="user_status" property="status"></result> 
+       <result column="userinfo_trueName" property="trueName"></result> 
+       <result column="userinfo_address" property="address"></result>
+       <result column="userinfo_sex" property="sex"></result>
+       <result column="userinfo_icon" property="icon"></result> 
+       <result column="userinfo_birthday" property="birthday"></result> 
+       <result column="userinfo_intro" property="intro"></result> 
+       <result column="userinfo_email" property="email"></result> 
        <association property="user" javaType="microBlog.entity.User" >  
-            <id column="user_id" property="userId"/>  
-            <result column="user_email" property="email"/>    
-            <result column="user_passWord" property="passWord"/>    
+            <id column="user_id" property="id"/>  
+            <result column="user_email" property="email"/>                
             <result column="user_nickName" property="nickName"/>    
        		<result column="user_time" property="time"/>    
        		<result column="user_status" property="status"/>    
        </association> 
     </resultMap>
+    <sql id="sql">
+		SELECT ui.*,u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,
+		u.user_time AS user_time,u.user_status AS user_status
+		FROM userInfo ui LEFT JOIN `user` u ON(ui.user_id = u.user_id) 
+    </sql>
+    <select  id="fetchById" resultMap="resultUserInfo">
+    	<include refid="sql" /> WHERE u.id = #{id}
+    </select>
+    <update id="update">
+    	update UserInfo
+    	<set>
+    		<if test="address != null">userinfo_address = #{address},</if>
+    		<if test="sex != null">userinfo_sex = #{sex},</if>
+    		<if test="icon != null">userinfo_icon = #{icon},</if>
+    		<if test="birthday != null">userinfo_birthday = #{birthday},</if>
+    		<if test="intro != null">userinfo_intro = #{intro},</if>
+    	</set>
+    	<where>
+    		userinfo_id = #{id}
+    	</where>
+    </update>
 </mapper>
   	

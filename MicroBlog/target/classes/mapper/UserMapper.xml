@@ -11,7 +11,7 @@
        <result column="user_time" property="time"></result>
        <result column="user_status" property="status"></result> 
     </resultMap>
-    <select id="checkLogin">
+    <select id="checkLogin" resultMap="resultUser">
     	select * from User where user_email = #{email} and user_passWord = #{passWord} and user_status !=1
     </select>
     <update id="updateStatus">
@@ -23,7 +23,7 @@
 			user_id = #{id}
 		</where>
 	</update>
-	<select id="fetchById">
+	<select id="fetchById" resultMap="resultUser">
 		select * from User where user_id = #{id}
 	</select>
 	<update id="update">
@@ -36,7 +36,7 @@
 			user_id = #{id}
 		</where>
 	</update>
-	<select id="fetchUserByEmail">
+	<select id="fetchUserByEmail" resultMap="resultUser">
 		select * from User where user_email = #{email}
 	</select>
 	<insert id="add" keyProperty="id" useGeneratedKeys="true">

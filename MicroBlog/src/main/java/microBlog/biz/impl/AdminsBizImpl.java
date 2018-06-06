@@ -1,5 +1,6 @@
 package microBlog.biz.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import microBlog.biz.AdminsBiz;
@@ -9,6 +10,7 @@ import microBlog.mapper.AdminsMapper;
 @Service
 public class AdminsBizImpl implements AdminsBiz{
 
+	@Autowired
 	private AdminsMapper adminsMapper;
 	
 	@Override
