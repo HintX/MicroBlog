@@ -6,7 +6,6 @@
 	<resultMap id="resultCollections" type="Collections" >  
        <result column="collections_id" property="id"></result> 
        <result column="collections_time" property="time"></result> 
-       <result column="collections_state" property="state"></result>
        <association property="user" javaType="microBlog.entity.User" >  
             <id column="user_id" property="id"/>  
             <result column="user_email" property="email"/>    
@@ -24,5 +23,20 @@
 	       <result column="messages_state" property="status"></result> 
        </association> 
     </resultMap>
+    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+    	insert into Collections(user_id,messages_id,collections_time) values(#{userId},#{messagesId},#{time})
+    </insert>
+    <delete id="delete">
+    	DELETE FROM Collections WHERE collctions_id = #{id} 
+    </delete>
+    <select id="getAll">
+    	SELECT c.*,
+		u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,u.user_time AS user_time,u.user_status AS user_status,
+		m.messages_id AS messages_id,m.messages_info AS messages_info,m.messages_time AS messages_time,m.messages_collectnum AS messages_collectnum,m.messages_commentnum AS messages_commentnum,m.messages_agreenum AS messages_agreenum,m.messages_state AS messages_state
+		FROM Collections c 
+		LEFT JOIN `user` u ON(c.user_id = u.user_id)
+		LEFT JOIN `Messages` m ON(c.messages_id = m.messages_id)
+		WHERE  m.messages_state = 0
+    </select>
 </mapper>
   	

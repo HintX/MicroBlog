@@ -14,7 +14,6 @@ public class Collections {
 	private User user;
 	private Messages messages;
 	private Date time;
-	private int state;
 	public int getId() {
 		return id;
 	}
@@ -38,12 +37,6 @@ public class Collections {
 	}
 	public void setTime(Date time) {
 		this.time = time;
-	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
 	}
 	
 }

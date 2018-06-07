@@ -21,7 +21,7 @@ public class AdminsApi {
 	@ResponseBody
 	@RequestMapping("checkLogin")
 	public boolean checkLogin(String userName,String passWord,HttpSession session) {
-		boolean isTrue = false;
+		boolean isTrue = false;          
 		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 		String Md5Name = md5.encodePassword(passWord,userName);
 		Admins admins = adminsBiz.checkLogin(userName, Md5Name);
