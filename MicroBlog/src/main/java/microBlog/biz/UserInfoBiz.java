@@ -1,5 +1,9 @@
 package microBlog.biz;
 
-public interface UserInfoBiz {
 
+import microBlog.entity.UserInfo;
+
+public interface UserInfoBiz {
+	UserInfo fetchById(int id);
+	void update(UserInfo userInfo);
 }

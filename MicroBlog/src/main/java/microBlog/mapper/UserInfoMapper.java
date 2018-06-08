@@ -9,4 +9,5 @@ import microBlog.entity.UserInfo;
 public interface UserInfoMapper {
 	UserInfo fetchById(@Param("id")int id);
 	void update(UserInfo userInfo);
+
 }

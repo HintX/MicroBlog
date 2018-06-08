@@ -29,7 +29,7 @@
     <delete id="delete">
     	DELETE FROM Collections WHERE collctions_id = #{id} 
     </delete>
-    <select id="getAll">
+    <select id="getAll" resultMap="resultCollections">
     	SELECT c.*,
 		u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,u.user_time AS user_time,u.user_status AS user_status,
 		m.messages_id AS messages_id,m.messages_info AS messages_info,m.messages_time AS messages_time,m.messages_collectnum AS messages_collectnum,m.messages_commentnum AS messages_commentnum,m.messages_agreenum AS messages_agreenum,m.messages_state AS messages_state

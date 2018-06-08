@@ -10,7 +10,7 @@
        <result column="messages_collectnum" property="collectnum"></result>
        <result column="messages_commentnum" property="commentnum"></result> 
        <result column="messages_agreenum" property="agreenum"></result> 
-       <result column="messages_state" property="status"></result> 
+       <result column="messages_state" property="state"></result> 
        <association property="user" javaType="microBlog.entity.User" >  
             <id column="user_id" property="id"/>  
             <result column="user_email" property="email"/>    
@@ -25,5 +25,16 @@
 		 	 <result column="topic_state" property="state"></result> 
        </association>
     </resultMap>
+    <sql id="sql">
+    	SELECT m.*, 
+		u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,u.user_time AS user_time,u.user_status AS user_status,
+		t.topic_id AS topic_id,t.topic_name AS topic_name,t.topic_time AS topic_time,t.topic_state AS topic_state
+		FROM messages m 
+		LEFT JOIN `user` u ON(m.user_id = u.user_id)
+		LEFT JOIN `Topic` t ON(m.topic_id = t.topic_id)
+    </sql>
+    <select id="fetchByUserId" resultMap="resultMessages">
+    	<include refid="sql" /> WHERE u.id = #{userId} order by m.messages_time desc limit #{statrIndex},#{pageSize}
+    </select>
 </mapper>
   	
