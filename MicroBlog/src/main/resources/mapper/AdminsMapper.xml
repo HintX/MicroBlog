@@ -3,7 +3,7 @@
  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="microBlog.mapper.AdminsMapper">
-	 <resultMap id="resultAdmins" type="Admins" >  
+	 <resultMap id="resultAdmins" type="microBlog.entity.Admins" >  
        <result column="admins_id" property="id"></result>  
        <result column="admins_name" property="name"></result>  
        <result column="admins_userName" property="userName"></result> 

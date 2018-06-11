@@ -3,7 +3,7 @@
  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="microBlog.mapper.RelationMapper">
-	<resultMap id="resultRelation" type="Relation" >  
+	<resultMap id="resultRelation" type="microBlog.entity.Relation" >  
        <result column="relation_id" property="id"></result> 
        <result column="relation_time" property="time"></result> 
        <association property="user" javaType="microBlog.entity.User" >  

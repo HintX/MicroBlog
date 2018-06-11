@@ -3,7 +3,7 @@
  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="microBlog.mapper.DatumMapper">
-	<resultMap id="resultDatum" type="Datum">
+	<resultMap id="resultDatum" type="microBlog.entity.Datum">
 		<result column="user_id" property="userId"></result>
 		<result column="nickName" property="nickName"></result>
 		<result column="messagesNum" property="messagesNum"></result>

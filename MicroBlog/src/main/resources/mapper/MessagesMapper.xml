@@ -3,7 +3,7 @@
  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="microBlog.mapper.MessagesMapper">
-	<resultMap id="resultMessages" type="Messages" >  
+	<resultMap id="resultMessages" type="microBlog.entity.Messages" >  
        <result column="messages_id" property="id"></result> 
        <result column="messages_info" property="info"></result> 
        <result column="messages_time" property="time"></result>
