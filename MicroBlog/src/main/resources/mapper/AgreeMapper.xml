@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="microBlog.entity.Agree">
+	<resultMap id="resultAgree" type="microBlog.entity.Agree">
+		<result column="agress_id" property="id"></result>
+		<result column="agress_time" property="time"></result>
+		<association property="user" javaType="microBlog.entity.User">
+			<id column="user_id" property="id" />
+			<result column="user_email" property="email" />
+			<result column="user_nickName" property="nickName" />
+			<result column="user_time" property="time" />
+			<result column="user_status" property="status" />
+		</association>
+		<association property="messages" javaType="microBlog.entity.Messages" >  
+            <id column="messages_id" property="id"/>  
+            <result column="messages_info" property="info"></result> 
+      	    <result column="messages_time" property="time"></result>
+		    <result column="messages_collectnum" property="collectnum"></result>
+		    <result column="messages_commentnum" property="commentnum"></result> 
+		    <result column="messages_agreenum" property="agreenum"></result> 
+		    <result column="messages_state" property="status"></result> 
+	  </association>
+	</resultMap>
+	<sql id="id">
+		SELECT r.*, 
+		u.user_id AS user_id,u.user_email AS user_email,u.user_nickName AS user_nickName,u.user_time AS user_time,u.user_status AS user_status,
+		m.messages_id AS messages_id,m.messages_info AS messages_info,m.messages_time AS messages_time,m.messages_collectnum AS messages_collectnum,m.messages_commentnum AS messages_commentnum,m.messages_agreenum AS messages_agreenum,m.messages_state AS messages_state
+		FROM agree r
+		LEFT JOIN `messages` m ON(m.messages_id = r.messages_id)
+		LEFT JOIN `user` u ON(r.user_id = u.user_id)
+	</sql>
+	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+		insert into agree(user_id,messages_id,agree_time) values(userId,messagesId,time);
+	</insert>
+	<delete id="del">
+		DELETE FROM agree WHERE agree_id = #{id}
+	</delete>
+	<select id="fetchByUserIdAndMessagesId">
+		<include refid="sql" /> where u.user_id = #{userId} and m.messages_id = #{messagesId}
+	</select>
+	<select id="getAll">
+		<include refid="sql" /> where m.messages_userId = #{mUserId} order by agree_time desc  limit #{statrIndex},#{pageSize}
+	</select>
+</mapper>

@@ -36,5 +36,11 @@
     <select id="fetchByUserId" resultMap="resultMessages">
     	<include refid="sql" /> WHERE u.id = #{userId} order by m.messages_time desc limit #{statrIndex},#{pageSize}
     </select>
+    <update id="addAgreenum">
+      	update messages set messages_agreenum = messages_agreenum + 1 where messages_id = #{id}
+    </update>
+    <update id="delAgreenum">
+    	update messages set messages_agreenum = messages_agreenum - 1 where messages_id = #{id}
+    </update>
 </mapper>
   	

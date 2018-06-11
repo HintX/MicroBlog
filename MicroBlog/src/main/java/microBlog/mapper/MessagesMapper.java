@@ -10,4 +10,6 @@ public interface MessagesMapper {
 	 Messages fetchByUserId(@Param("UserId")int UserId,
 			   @Param("statrIndex")int statrIndex,
 			   @Param("pageSize")int pageSize);
+	 void addAgreenum(@Param("id")int id);
+	 void delAgreenum(@Param("id")int id);
 }
