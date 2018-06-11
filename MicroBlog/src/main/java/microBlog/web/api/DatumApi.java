@@ -9,7 +9,7 @@ import microBlog.biz.DatumBiz;
 import microBlog.entity.Datum;
 
 @Controller
-@RequestMapping("/api/ Datum")
+@RequestMapping("/api/Datum")
 public class DatumApi {
 
 	@Autowired
