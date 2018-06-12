@@ -37,7 +37,7 @@
 	<delete id="del">
 		DELETE FROM agree WHERE agree_id = #{id}
 	</delete>
-	<select id="fetchByUserIdAndMessagesId">x`
+	<select id="fetchByUserIdAndMessagesId">
 		<include refid="sql" /> where u.user_id = #{userId} and m.messages_id = #{messagesId}
 	</select>
 	<select id="getAll">

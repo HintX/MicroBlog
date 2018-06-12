@@ -20,7 +20,7 @@
 			<result column="userinfo_email" property="email"></result>
 		</association>
 	</resultMap>
-	<select id="gerenziliao" resultMap="resultDatum">
+	<sql id="sql">
 		SELECT ui.*,u.user_nickName
 		AS nickName,(SELECT COUNT(messages_id) FROM messages WHERE
 		user_id=#{userId} AND messages_state=0) AS messagesNum,
@@ -30,6 +30,8 @@
 		fansNum
 		FROM userinfo ui
 		LEFT JOIN `user` u ON (u.`user_id`=ui.`user_id`)
-		WHERE ui.user_id=#{userId}
+	</sql>
+	<select id="gerenziliao" resultMap="resultDatum">
+		<include refid="sql"> WHERE ui.user_id=#{userId}
 	</select>
 </mapper>
