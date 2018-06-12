@@ -13,7 +13,7 @@ public class User {
 	private int id;
 	private String email;
 	private String passWord;
-	private String nikeName;//昵称
+	private String nickName;//昵称
 	private Date time;//注册时间
 	private int status;//状态
 	public int getId() {
@@ -34,11 +34,11 @@ public class User {
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
-	public String getNikeName() {
-		return nikeName;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNikeName(String nikeName) {
-		this.nikeName = nikeName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public Date getTime() {
 		return time;
