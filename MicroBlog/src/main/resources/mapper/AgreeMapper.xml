@@ -31,16 +31,16 @@
 		LEFT JOIN `messages` m ON(m.messages_id = r.messages_id)
 		LEFT JOIN `user` u ON(r.user_id = u.user_id)
 	</sql>
-	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+	<insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Agree">
 		insert into agree(user_id,messages_id,agree_time) values(userId,messagesId,time);
 	</insert>
-	<delete id="del">
+	<delete id="del" >
 		DELETE FROM agree WHERE agree_id = #{id}
 	</delete>
-	<select id="fetchByUserIdAndMessagesId">
+	<select id="fetchByUserIdAndMessagesId" resultMap="resultAgree">
 		<include refid="sql" /> where u.user_id = #{userId} and m.messages_id = #{messagesId}
 	</select>
-	<select id="getAll">
+	<select id="getAll" resultMap="resultAgree">
 		<include refid="sql" /> where m.messages_userId = #{mUserId} order by agree_time desc  limit #{statrIndex},#{pageSize}
 	</select>
 </mapper>

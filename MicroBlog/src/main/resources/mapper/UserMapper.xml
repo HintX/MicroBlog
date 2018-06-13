@@ -14,7 +14,7 @@
     <select id="checkLogin" resultMap="resultUser">
     	select * from User where user_email = #{email} and user_passWord = #{passWord} and user_status !=1
     </select>
-    <update id="updateStatus">
+    <update id="updateStatus" parameterType="microBlog.entity.User">
 		UPDATE User
 		<set>
 			<if test="status != null">user_status = #{status},</if>
@@ -26,7 +26,7 @@
 	<select id="fetchById" resultMap="resultUser">
 		select * from User where user_id = #{id}
 	</select>
-	<update id="update">
+	<update id="update" parameterType="microBlog.entity.User">
 		UPDATE User
 		<set>
 			<if test="passWord != null">user_passWord = #{passWord},</if>
@@ -36,10 +36,10 @@
 			user_id = #{id}
 		</where>
 	</update>
-	<select id="fetchUserByEmail" resultMap="resultUser">
+	<select id="fetchUserByEmail" resultMap="resultUser" >
 		select * from User where user_email = #{email}
 	</select>
-	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+	<insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.User">
 		INSERT INTO user(user_email,user_passWord,user_nickName,user_time,user_status) VALUES(#{email}#{passWord}#{nickName}#{time},0)
 	</insert>
 </mapper>

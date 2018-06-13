@@ -28,7 +28,7 @@
     <select  id="fetchById" resultMap="resultUserInfo">
     	<include refid="sql" /> WHERE u.id = #{id}
     </select>
-    <update id="update">
+    <update id="update" parameterType="microBlog.entity.UserInfo">
     	update UserInfo
     	<set>
     		<if test="address != null">userinfo_address = #{address},</if>

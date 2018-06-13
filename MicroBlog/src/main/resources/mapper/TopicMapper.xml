@@ -21,10 +21,10 @@
 		u.user_time AS user_time,u.user_status AS user_status
 		FROM topic t LEFT JOIN `user` u ON(t.user_id = u.user_id) 
      </sql>
-      <select id="fetchById" resultMap="resultTopic">
+     <select id="fetchById" resultMap="resultTopic">
     	<include refid="sql" /> where t.Topic_id = #{id} ane t.Topic_state != 0
     </select>  
-    <update id="update">
+    <update id="update" parameterType="microBlog.entity.Topic">
 		UPDATE Admins
 		<set>
 			<if test="name != null">Topic_name = #{name},</if>
@@ -34,7 +34,7 @@
 			Topic_id = #{id}
 		</where>
 	</update>
-	<update id="updateState">
+	<update id="updateState" parameterType="microBlog.entity.Topic">
 		UPDATE Topic
 		<set>
 			<if test="state != null">Topic_state = #{state},</if>
@@ -43,7 +43,7 @@
 			Topic_id = #{id}
 		</where>
 	</update>
-	<insert id="add" keyProperty="id" useGeneratedKeys="true">
+	<insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Topic">
 		INSERT INTO Topic(Topic_name,Topic_time,Topic_userId,Topic_state) VALUES(#{name},#{time},#{userId},0)
 	</insert>
 </mapper>

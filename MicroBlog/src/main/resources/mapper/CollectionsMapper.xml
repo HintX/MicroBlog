@@ -23,7 +23,7 @@
 	       <result column="messages_state" property="status"></result> 
        </association> 
     </resultMap>
-    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+    <insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Collections">
     	insert into Collections(user_id,messages_id,collections_time) values(#{userId},#{messagesId},#{time})
     </insert>
     <delete id="delete">

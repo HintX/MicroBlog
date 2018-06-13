@@ -16,13 +16,13 @@
     <select id="fetchById" resultMap="resultAdmins">
     	select * from Admins where admins_id = #{id}
     </select>
-    <select id="fetchByUserName" resultMap="resultAdmins">
+    <select id="fetchByUserName" resultMap="resultAdmins"  >
     	select * from Admins where admins_userName = #{userName}
     </select>
-    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+    <insert id="register" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Admins">
 		INSERT INTO Admins(admins_name,admins_userName,admins_passWord,admins_state) VALUES(#{name}, #{userName}, #{passWord},0)
 	</insert>
-	<update id="update">
+	<update id="update" parameterType="microBlog.entity.Admins">
 		UPDATE Admins
 		<set>
 			<if test="name != null">admins_name = #{name},</if>
@@ -34,7 +34,7 @@
 			admins_id = #{id}
 		</where>
 	</update>
-	<update id="updateState">
+	<update id="updateState" parameterType="microBlog.entity.Admins“>
 		UPDATE Admins
 		<set>
 			<if test="state != null">admins_state = #{state},</if>
