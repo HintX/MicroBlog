@@ -34,7 +34,7 @@
 			admins_id = #{id}
 		</where>
 	</update>
-	<update id="updateState" parameterType="microBlog.entity.Admins“>
+	<update id="updateState" parameterType="microBlog.entity.Admins">
 		UPDATE Admins
 		<set>
 			<if test="state != null">admins_state = #{state},</if>

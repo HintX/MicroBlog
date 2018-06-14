@@ -32,6 +32,6 @@
 		LEFT JOIN `user` u ON (u.`user_id`=ui.`user_id`)
 	</sql>
 	<select id="gerenziliao" resultMap="resultDatum">
-		<include refid="sql"> WHERE ui.user_id=#{userId}
+		<include refid="sql"/> WHERE ui.user_id=#{userId}
 	</select>
 </mapper>

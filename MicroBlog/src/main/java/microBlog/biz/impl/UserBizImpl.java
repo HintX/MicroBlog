@@ -1,6 +1,8 @@
 package microBlog.biz.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import microBlog.biz.UserBiz;
@@ -41,5 +43,12 @@ public class UserBizImpl implements UserBiz{
 	@Override
 	public void updateStatus(int id, int status) {
 		usermapper.updateStatus(id, status);
+	}
+	
+	
+	public static void main(String[] args) {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-beans.xml");
+		UserMapper u = ctx.getBean(UserMapper.class);
+		System.out.println(u.fetchById(1));
 	}
 }
