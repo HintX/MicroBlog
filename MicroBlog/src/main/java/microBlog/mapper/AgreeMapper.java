@@ -15,4 +15,5 @@ public interface AgreeMapper {
 	 List<Agree> getAll(@Param("mUserId")int mUserId,
 			 	@Param("statrIndex")int statrIndex,
 			    @Param("pageSize")int pageSize);
+	 
 }

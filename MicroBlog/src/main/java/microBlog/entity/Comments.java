@@ -13,7 +13,7 @@ public class Comments {
 	private int id;
 	private String info;
 	private Messages messages;
-	private int userId;
+	private User user;
 	private Date time;
 	public int getId() {
 		return id;
@@ -33,11 +33,11 @@ public class Comments {
 	public void setMessages(Messages messages) {
 		this.messages = messages;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public Date getTime() {
 		return time;

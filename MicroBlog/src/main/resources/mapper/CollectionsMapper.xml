@@ -20,7 +20,7 @@
 	       <result column="messages_collectnum" property="collectnum"></result>
 	       <result column="messages_commentnum" property="commentnum"></result> 
 	       <result column="messages_agreenum" property="agreenum"></result> 
-	       <result column="messages_state" property="status"></result> 
+	       <result column="messages_state" property="state"></result> 
        </association> 
     </resultMap>
     <insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Collections">

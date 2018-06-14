@@ -20,7 +20,7 @@
 		    <result column="messages_collectnum" property="collectnum"></result>
 		    <result column="messages_commentnum" property="commentnum"></result> 
 		    <result column="messages_agreenum" property="agreenum"></result> 
-		    <result column="messages_state" property="status"></result> 
+		    <result column="messages_state" property="state"></result> 
 	  </association>
 	</resultMap>
 	<sql id="sql">
@@ -41,6 +41,6 @@
 		<include refid="sql" /> where u.user_id = #{userId} and m.messages_id = #{messagesId}
 	</select>
 	<select id="getAll" resultMap="resultAgree">
-		<include refid="sql" /> where m.messages_userId = #{mUserId} order by agree_time desc  limit #{statrIndex},#{pageSize}
+		<include refid="sql" /> where m.user_id = #{mUserId} order by agree_time desc  limit #{statrIndex},#{pageSize}
 	</select>
 </mapper>
