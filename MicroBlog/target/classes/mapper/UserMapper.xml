@@ -37,7 +37,7 @@
 		</where>
 	</update>
 	<select id="fetchUserByEmail" resultMap="resultUser" >
-		select * from User where user_email = #{email}
+		select * from User where user_email = #{emai4l}
 	</select>
 	<insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.User">
 		INSERT INTO user(user_email,user_passWord,user_nickName,user_time,user_status) VALUES(#{email}#{passWord}#{nickName}#{time},0)
