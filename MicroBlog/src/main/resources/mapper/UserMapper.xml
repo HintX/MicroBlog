@@ -17,7 +17,7 @@
     <update id="updateStatus" parameterType="microBlog.entity.User">
 		UPDATE User
 		<set>
-			<if test="status != null">user_status = #{status},</if>
+			<if test="status != null">user_status = #{status}</if>
 		</set>
 		<where>
 			user_id = #{id}
@@ -30,7 +30,7 @@
 		UPDATE User
 		<set>
 			<if test="passWord != null">user_passWord = #{passWord},</if>
-			<if test="nickName != null">user_nickName = #{nickName},</if>
+			<if test="nickName != null">user_nickName = #{nickName}</if>
 		</set>
 		<where>
 			user_id = #{id}

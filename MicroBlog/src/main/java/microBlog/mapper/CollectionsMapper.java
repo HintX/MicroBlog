@@ -1,10 +1,11 @@
 package microBlog.mapper;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import microBlog.entity.Collections;
 
 @Repository
 public interface CollectionsMapper {

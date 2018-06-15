@@ -30,7 +30,7 @@
 		LEFT JOIN `user` b ON(r.user_id = u.user_id)
     </sql>
     <select id="UpdateFans" resultMap="resultRelation" >
-    	<include refid="sql" /> where u.user_id = #{userId} and b.user_byId = #{byId}
+    	<include refid="sql" /> where u.user_id = #{userId} and r.user_byId = #{byId}
     </select>
 </mapper>
   	

@@ -28,7 +28,7 @@
 		UPDATE Admins
 		<set>
 			<if test="name != null">Topic_name = #{name},</if>
-			<if test="state != null">Topic_state = #{state},</if>
+			<if test="state != null">Topic_state = #{state}</if>
 		</set>
 		<where>
 			Topic_id = #{id}
@@ -37,7 +37,7 @@
 	<update id="updateState" parameterType="microBlog.entity.Topic">
 		UPDATE Topic
 		<set>
-			<if test="state != null">Topic_state = #{state},</if>
+			<if test="state != null">Topic_state = #{state}</if>
 		</set>
 		<where>
 			Topic_id = #{id}

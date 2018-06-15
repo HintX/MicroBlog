@@ -1,6 +1,7 @@
 package microBlog.biz.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,18 @@ public class MessagesBizImpl implements MessagesBiz{
 		Agree agrer = agreeMapper.fetchByUserIdAndMessagesId(userId, id);
 		agreeMapper.del(agrer.getId());
 		messagesMapper.delAgreenum(id);
+	}
+
+	@Override
+	public List<Messages> orderfind() {
+		// TODO Auto-generated method stub
+		return messagesMapper.orderfind();
+	}
+
+	@Override
+	public void updatecollectnum(int id) {
+		// TODO Auto-generated method stub
+		messagesMapper.updatecollectnum(id);
 	}
 
 }

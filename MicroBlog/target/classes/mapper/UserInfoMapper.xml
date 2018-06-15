@@ -35,7 +35,7 @@
     		<if test="sex != null">userinfo_sex = #{sex},</if>
     		<if test="icon != null">userinfo_icon = #{icon},</if>
     		<if test="birthday != null">userinfo_birthday = #{birthday},</if>
-    		<if test="intro != null">userinfo_intro = #{intro},</if>
+    		<if test="intro != null">userinfo_intro = #{intro}</if>
     	</set>
     	<where>
     		userinfo_id = #{id}

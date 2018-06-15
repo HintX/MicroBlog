@@ -30,7 +30,13 @@
 		LEFT JOIN `user` b ON(r.user_id = u.user_id)
     </sql>
     <select id="UpdateFans" resultMap="resultRelation" >
-    	<include refid="sql" /> where u.user_id = #{userId} and b.user_byId = #{byId}
+    	<include refid="sql" /> where u.user_id = #{userId} and r.user_byId = #{byId}
     </select>
+    <select id="findcount" resultMap="resultRelation" >
+    	<include refid="sql" /> where u.user_id = #{userId}
+    </select>
+    <insert id="addreation" keyProperty="id">
+    	INSERT INTO Relation(`user_id`,`user_byId`,`relation_time`) VALUES (#{userId},#{byId},now())
+    </insert>
 </mapper>
   	

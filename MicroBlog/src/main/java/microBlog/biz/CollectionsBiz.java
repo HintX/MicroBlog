@@ -1,7 +1,8 @@
 package microBlog.biz;
 
-import java.util.Collections;
 import java.util.List;
+
+import microBlog.entity.Collections;
 
 
 public interface CollectionsBiz {

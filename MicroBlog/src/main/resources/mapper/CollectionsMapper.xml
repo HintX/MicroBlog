@@ -24,7 +24,7 @@
        </association> 
     </resultMap>
     <insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="microBlog.entity.Collections">
-    	insert into Collections(user_id,messages_id,collections_time) values(#{userId},#{messagesId},#{time})
+    	insert into Collections(user_id,messages_id,collections_time) values(#{user.id},#{messages.id},NOW())
     </insert>
     <delete id="delete">
     	DELETE FROM Collections WHERE collctions_id = #{id} 

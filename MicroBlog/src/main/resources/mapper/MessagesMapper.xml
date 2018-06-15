@@ -33,6 +33,9 @@
 		LEFT JOIN `user` u ON(m.user_id = u.user_id)
 		LEFT JOIN `Topic` t ON(m.topic_id = t.topic_id)
     </sql>
+    <select id="orderfind" resultMap="resultMessages">
+    	<include refid="sql" /> ORDER BY RAND() 
+    </select>
     <select id="fetchByUserId" resultMap="resultMessages">
     	<include refid="sql" /> WHERE u.id = #{userId} order by m.messages_time desc limit #{statrIndex},#{pageSize}
     </select>
@@ -42,5 +45,9 @@
     <update id="delAgreenum">
     	update messages set messages_agreenum = messages_agreenum - 1 where messages_id = #{id}
     </update>
+     <update id="updatecollectnum">
+    	update messages set messages_collectnum = messages_collectnum + 1 where messages_id = #{id}
+    </update>
+    
 </mapper>
   	
